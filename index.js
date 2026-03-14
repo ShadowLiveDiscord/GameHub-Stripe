@@ -119,7 +119,8 @@ const stripeKey = process.env.STRIPE_SECRET_KEY?.trim();
 const stripe = stripeKey ? require('stripe')(stripeKey) : null;
 
 const app = express();
-const PORT = process.env.STRIPE_PORT || 4242;
+// Railway injecte process.env.PORT — priorité sur STRIPE_PORT
+const PORT = process.env.PORT || process.env.STRIPE_PORT || 4242;
 
 // Prix Stripe
 const STRIPE_PRICES = {
